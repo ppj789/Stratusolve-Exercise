@@ -28,7 +28,12 @@ class Task {
     }
     protected function getUniqueId() {
         // Assignment: Code to get new unique ID
-        return -1; // Placeholder return for now
+        $taskNum = sizeof($this->TaskDataSource);
+        if($taskNum > 0){
+          return $taskNum;
+        }
+
+        return 1; // Placeholder return for now
     }
     protected function LoadFromId($Id = null) {
         if ($Id) {
