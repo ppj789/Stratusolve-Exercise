@@ -28,16 +28,23 @@ class Task {
     }
     protected function getUniqueId() {
         // Assignment: Code to get new unique ID
-        $taskNum = sizeof($this->TaskDataSource);
-        if($taskNum > 0){
-          return $taskNum;
-        }
-
-        return 1; // Placeholder return for now
+        return uniqid();
     }
     protected function LoadFromId($Id = null) {
         if ($Id) {
             // Assignment: Code to load details here...
+            $taskArray = $this->TaskDataSource;
+            foreach ($taskArray as $task) {
+                if($task->TaskId == $_GET['id']){
+                   $html ="<div class='col-md-12' style='margin-bottom: 5px;'>
+                           <input type='hidden' name='task_id' value='$task->TaskId' class='form-control'>
+                           <input type='text' name='task_name' value='$task->TaskName' class='form-control'>
+                           </div>
+                           <div class='col-md-12'>
+                           <textarea id='InputTaskDescription' name='task_desc' class='form-control'>$task->TaskDescription</textarea>
+                           </div>";
+                }
+            }
         } else
             return null;
     }
